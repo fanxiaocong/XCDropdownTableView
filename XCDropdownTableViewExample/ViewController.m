@@ -24,9 +24,9 @@
 
 - (IBAction)didClickButton:(id)sender {
     
-    XCDroupdownTableView *t = [[XCDroupdownTableView alloc] initWithFrame:CGRectMake(100, 100, 300, 100)];
+    XCDroupdownTableView *t = [[XCDroupdownTableView alloc] initWithFrame:CGRectMake(100, 150, 300, 100)];
     
-    t.defaultSelectedIndex(11).dataSource(@[@"测试数据一", @"测试数据二", @"测试数据三", @"测试数据四", @"测试数据五", @"测试数据六"]).didSelectRowHandle(^(XCDroupdownTableView *view, UITableView *table, NSInteger row){
+    t.defaultSelectedIndex(11).rowHeight(60).fontSize(12).dataSource(@[@"测试数据一", @"测试数据二", @"测试数据三", @"测试数据四", @"测试数据五", @"测试数据六"]).didSelectRowHandle(^(XCDroupdownTableView *view, UITableView *table, NSInteger row){
         
         NSLog(@"点击了第 %zi 行", row);
         

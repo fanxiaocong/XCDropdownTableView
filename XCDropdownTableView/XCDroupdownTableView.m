@@ -6,40 +6,6 @@
 //  Copyright © 2017年 樊小聪. All rights reserved.
 //
 
-/**
- 
- maniplation 操作
- encapsulation 封装
- graduated   毕业于，从...毕业
- 
- What college should I attend in the fall
- 
- I am majoring in history
- 
- Can you tell me where is my dormitory
- 
- I am taking extra classes this semester
- 
- Are you having problems with Chemistry
- 
- I am not worried about this test 
- 
- The prices on nootbooks have gone up
- 
- Our class has a meeting after lunch
- 
- The new professor is very strict
- 
- Do yout want to study together for the exam
- 
- So now that we are graduated from highschool, what are you going to do
- 
- How long have you attended this school
- 
- Have you decided on classes you want to take this semester
- 
- */
-
 
 /*
  *  备注：自定义下拉列表视图 🐾
@@ -419,6 +385,7 @@
     return ^XCDroupdownTableView *(CGFloat rowHeight){
         
         weakSelf.rowH = rowHeight;
+        weakSelf.tableView.rowHeight = rowHeight;
         
         return weakSelf;
     };

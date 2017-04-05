@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.author       = { "樊小聪" => "1016697223@qq.com" }
 
 
-  s.source       = { :git => "https://github.com/fanxiaocong/XCBannerView.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/fanxiaocong/XCDropdownTableView.git", :tag => s.version }
 
 
   s.source_files = "XCDropdownTableView"
