@@ -178,9 +178,6 @@
     tableView.tableFooterView = [[UIView alloc] init];
     self.tableView = tableView;
     [self addSubview:tableView];
-    
-    /// 将视图添加至窗口
-    [[UIApplication sharedApplication].keyWindow addSubview:maskView];
 }
 
 #pragma mark - 📕 👀 UITableViewDataSource 👀
