@@ -291,7 +291,7 @@
         cellRealCount = self.cellCount;
     }
     
-    return (MIN(cellRealCount, MAX_ROWS_COUNT)) * self.rowH;
+    return (MIN(cellRealCount, self.maxCount)) * self.rowH;
 }
 
 /**
@@ -340,16 +340,25 @@
     CGFloat tableW = CGRectGetWidth(self.frame);
     CGFloat tableH = [self fetchContentHeight];
     
+    /// 检测当前 tableView 是否已经超过屏幕显示的范围
+    if ((tableH + CGRectGetMinY(self.frame)) > SCREEN_HEIGHT) {
+        tableH = SCREEN_HEIGHT - CGRectGetMinY(self.frame);
+    }
+    
     self.tableView.frame = CGRectMake(tableX, tableY, tableW, 0);
     self.mask.alpha = 0;
 
     WS(weakSelf);
     
+    /// 设置阴影
+    self.layer.shadowOpacity = 0.6f;
+    self.layer.shadowOffset  = CGSizeMake(3, 3);
+    self.layer.shadowRadius  = 3;
+    
     [UIView animateWithDuration:DURATION animations:^{
         
         weakSelf.mask.alpha   = 1.f;
         weakSelf.tableView.frame = CGRectMake(tableX, tableY, tableW, tableH);
-        
     }];
     
     /// 刷新 表格

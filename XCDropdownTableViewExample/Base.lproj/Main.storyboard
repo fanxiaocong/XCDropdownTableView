@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,19 +22,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vah-9o-f8g">
-                                <rect key="frame" x="100" y="120" width="175" height="30"/>
+                                <rect key="frame" x="100" y="120" width="175" height="40"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="OOY-bj-tua"/>
+                                </constraints>
+                                <state key="normal" title="默认样式"/>
                                 <connections>
-                                    <action selector="didClickButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGZ-Q9-LUU"/>
+                                    <action selector="didClickDefaultStyleButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l1F-7A-Ijc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6d5-6D-ldA">
+                                <rect key="frame" x="100" y="210" width="175" height="40"/>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hIv-7g-pAE"/>
+                                </constraints>
+                                <state key="normal" title="自定义样式"/>
+                                <connections>
+                                    <action selector="didClickCustomStyleButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5eI-AZ-GeL"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6d5-6D-ldA" secondAttribute="trailing" constant="100" id="3Ej-Tu-V7B"/>
                             <constraint firstItem="vah-9o-f8g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="100" id="9KF-DO-Z28"/>
+                            <constraint firstItem="6d5-6D-ldA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="100" id="LAa-2B-dlr"/>
                             <constraint firstItem="vah-9o-f8g" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="Nbh-3q-YrN"/>
                             <constraint firstAttribute="trailing" secondItem="vah-9o-f8g" secondAttribute="trailing" constant="100" id="dbp-Qe-VNM"/>
+                            <constraint firstItem="6d5-6D-ldA" firstAttribute="top" secondItem="vah-9o-f8g" secondAttribute="bottom" constant="50" id="gJ4-ny-uct"/>
                         </constraints>
                     </view>
                 </viewController>
