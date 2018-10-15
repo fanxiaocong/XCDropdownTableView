@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-#import "XCDroupdownTableView.h"
+#import "XCDropdownTableView.h"
 #import "XXXCell.h"
 
 
@@ -33,8 +33,8 @@
     CGFloat w = CGRectGetWidth(sender.frame);
     CGFloat h = CGRectGetHeight(sender.frame);
     
-    XCDroupdownTableView *t = [[XCDroupdownTableView alloc] initWithFrame:CGRectMake(x, y, w, h)];
-    t.defaultSelectedIndex(3).maxRows(10).rowHeight(60).fontSize(12).textAlignment(NSTextAlignmentCenter).dataSource(@[@"测试数据一", @"测试数据二", @"测试数据三", @"测试数据四", @"测试数据五", @"测试数据六"]).didSelectRowHandle(^(XCDroupdownTableView *view, UITableView *table, NSInteger row){
+    XCDropdownTableView *t = [[XCDropdownTableView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+    t.defaultSelectedIndex(3).maxRows(10).rowHeight(60).fontSize(12).textAlignment(NSTextAlignmentCenter).dataSource(@[@"测试数据一", @"测试数据二", @"测试数据三", @"测试数据四", @"测试数据五", @"测试数据六"]).didSelectRowHandle(^(XCDropdownTableView *view, UITableView *table, NSInteger row){
         /// 点击某一行的回调
         NSLog(@"点击了第 %zi 行", row);
         
@@ -51,8 +51,8 @@
     CGFloat w = CGRectGetWidth(sender.frame);
     CGFloat h = CGRectGetHeight(sender.frame);
     
-    XCDroupdownTableView *t = [[XCDroupdownTableView alloc] initWithFrame:CGRectMake(x, y, w, h)];
-    t.style(XCDroupdownTableViewStyleCustom).rows(10).rowHeight(80).maxRows(10).cell(^(UITableView *tableView, NSIndexPath *indexPath){
+    XCDropdownTableView *t = [[XCDropdownTableView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+    t.style(XCDropdownTableViewStyleCustom).rows(10).rowHeight(80).maxRows(10).cell(^(UITableView *tableView, NSIndexPath *indexPath){
         
         /// 配置自定义的cell
         static NSString *cellIdentifier = @"XXXCell";
@@ -63,7 +63,7 @@
         cell.numberTextLB.text = @(indexPath.row).description;
         return cell;
         
-    }).didSelectRowHandle(^(XCDroupdownTableView *view, UITableView *table, NSInteger row){
+    }).didSelectRowHandle(^(XCDropdownTableView *view, UITableView *table, NSInteger row){
         
         NSLog(@"点击了第 %zi 行", row);
         

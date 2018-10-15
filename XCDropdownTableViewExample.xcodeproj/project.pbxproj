@@ -15,7 +15,7 @@
 		1E27E5F21E94A06800E4B5B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E27E5F01E94A06800E4B5B1 /* LaunchScreen.storyboard */; };
 		1E27E5FD1E94A06800E4B5B1 /* XCDropdownTableViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E27E5FC1E94A06800E4B5B1 /* XCDropdownTableViewExampleTests.m */; };
 		1E27E6081E94A06800E4B5B1 /* XCDropdownTableViewExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E27E6071E94A06800E4B5B1 /* XCDropdownTableViewExampleUITests.m */; };
-		1E27E6181E94A0AE00E4B5B1 /* XCDroupdownTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E27E6171E94A0AE00E4B5B1 /* XCDroupdownTableView.m */; };
+		1E27E6181E94A0AE00E4B5B1 /* XCDropdownTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E27E6171E94A0AE00E4B5B1 /* XCDropdownTableView.m */; };
 		1E2C113B20A57202002B7EBC /* XXXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2C113920A57202002B7EBC /* XXXCell.m */; };
 		1E2C113C20A57202002B7EBC /* XXXCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E2C113A20A57202002B7EBC /* XXXCell.xib */; };
 /* End PBXBuildFile section */
@@ -54,8 +54,8 @@
 		1E27E6031E94A06800E4B5B1 /* XCDropdownTableViewExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCDropdownTableViewExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E27E6071E94A06800E4B5B1 /* XCDropdownTableViewExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCDropdownTableViewExampleUITests.m; sourceTree = "<group>"; };
 		1E27E6091E94A06800E4B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E27E6161E94A0AE00E4B5B1 /* XCDroupdownTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDroupdownTableView.h; sourceTree = "<group>"; };
-		1E27E6171E94A0AE00E4B5B1 /* XCDroupdownTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDroupdownTableView.m; sourceTree = "<group>"; };
+		1E27E6161E94A0AE00E4B5B1 /* XCDropdownTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCDropdownTableView.h; sourceTree = "<group>"; };
+		1E27E6171E94A0AE00E4B5B1 /* XCDropdownTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCDropdownTableView.m; sourceTree = "<group>"; };
 		1E2C113820A57202002B7EBC /* XXXCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXXCell.h; sourceTree = "<group>"; };
 		1E2C113920A57202002B7EBC /* XXXCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXXCell.m; sourceTree = "<group>"; };
 		1E2C113A20A57202002B7EBC /* XXXCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XXXCell.xib; sourceTree = "<group>"; };
@@ -155,8 +155,8 @@
 		1E27E6151E94A0AE00E4B5B1 /* XCDropdownTableView */ = {
 			isa = PBXGroup;
 			children = (
-				1E27E6161E94A0AE00E4B5B1 /* XCDroupdownTableView.h */,
-				1E27E6171E94A0AE00E4B5B1 /* XCDroupdownTableView.m */,
+				1E27E6161E94A0AE00E4B5B1 /* XCDropdownTableView.h */,
+				1E27E6171E94A0AE00E4B5B1 /* XCDropdownTableView.m */,
 			);
 			path = XCDropdownTableView;
 			sourceTree = "<group>";
@@ -296,7 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E27E5EA1E94A06800E4B5B1 /* ViewController.m in Sources */,
-				1E27E6181E94A0AE00E4B5B1 /* XCDroupdownTableView.m in Sources */,
+				1E27E6181E94A0AE00E4B5B1 /* XCDropdownTableView.m in Sources */,
 				1E27E5E71E94A06800E4B5B1 /* AppDelegate.m in Sources */,
 				1E2C113B20A57202002B7EBC /* XXXCell.m in Sources */,
 				1E27E5E41E94A06800E4B5B1 /* main.m in Sources */,

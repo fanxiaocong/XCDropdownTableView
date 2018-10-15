@@ -1,5 +1,5 @@
 //
-//  XCDroupdownTableView.m
+//  XCDropdownTableView.m
 //  测试下拉列表Demo
 //
 //  Created by 樊小聪 on 2017/4/1.
@@ -11,7 +11,7 @@
  *  备注：自定义下拉列表视图 🐾
  */
 
-#import "XCDroupdownTableView.h"
+#import "XCDropdownTableView.h"
 
 #define SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.height
@@ -29,13 +29,13 @@
 // 弱引用
 #define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
 
-/* 🐖 ***************************** 🐖 XCDroupdownDefaultCell 🐖 *****************************  🐖 */
+/* 🐖 ***************************** 🐖 XCDropdownDefaultCell 🐖 *****************************  🐖 */
 
-@interface XCDroupdownDefaultCell : UITableViewCell
+@interface XCDropdownDefaultCell : UITableViewCell
 @property (weak, nonatomic, readonly) UILabel *contentLB;
 @end
 
-@implementation XCDroupdownDefaultCell
+@implementation XCDropdownDefaultCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
@@ -53,9 +53,9 @@
 }
 @end
 
-/* 🐖 ***************************** 🐖 XCDroupdownTableView 🐖 *****************************  🐖 */
+/* 🐖 ***************************** 🐖 XCDropdownTableView 🐖 *****************************  🐖 */
 
-@interface XCDroupdownTableView ()<UITableViewDataSource, UITableViewDelegate>
+@interface XCDropdownTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 /** 👀 蒙板 👀 */
 @property (weak, nonatomic) UIButton *mask;
@@ -67,13 +67,13 @@
 /** 👀 行高 👀 */
 @property (assign, nonatomic) CGFloat rowH;
 /** 👀 cell的样式 👀 */
-@property (assign, nonatomic) XCDroupdownTableViewStyle cellStyle;
+@property (assign, nonatomic) XCDropdownTableViewStyle cellStyle;
 /** 👀 选中某一行的回调 👀 */
-@property (copy, nonatomic) XCDroupdownTableViewDidSelectRowHandle selectedHandle;
+@property (copy, nonatomic) XCDropdownTableViewDidSelectRowHandle selectedHandle;
 
 
 
-/// style == XCDroupdownTableViewStyleDefault
+/// style == XCDropdownTableViewStyleDefault
 /** 👀 数据源数组 👀 */
 @property (strong, nonatomic) NSArray<NSString *> *dataArr;
 /** 👀 选中的下标 👀 */
@@ -89,16 +89,16 @@
 
 
 
-/// style == XCDroupdownTableViewStyleCustom
+/// style == XCDropdownTableViewStyleCustom
 /** 👀 cell的个数 👀 */
 @property (assign, nonatomic) NSInteger cellCount;
 /** 👀 自定义cell 👀 */
-@property (copy, nonatomic) XCDroupdownTableViewCell customCell;
+@property (copy, nonatomic) XCDropdownTableViewCell customCell;
 
 @end
 
 
-@implementation XCDroupdownTableView
+@implementation XCDropdownTableView
 
 #pragma mark - 👀 Init Method 👀 💤
 
@@ -139,7 +139,7 @@
  */
 - (void)configureData
 {
-    self.cellStyle      = XCDroupdownTableViewStyleDefault;
+    self.cellStyle      = XCDropdownTableViewStyleDefault;
     self.maxCount       = MAX_ROWS_COUNT;
     self.rowH           = CELL_HEIGHT;
     self.alignment      = NSTextAlignmentLeft;
@@ -184,7 +184,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.cellStyle == XCDroupdownTableViewStyleDefault)
+    if (self.cellStyle == XCDropdownTableViewStyleDefault)
     {
         return self.dataArr.count;
     }
@@ -194,7 +194,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.cellStyle == XCDroupdownTableViewStyleCustom)
+    if (self.cellStyle == XCDropdownTableViewStyleCustom)
     {
         /// 是自定义的 cell
         if (self.customCell)
@@ -210,14 +210,14 @@
     
     if (!cell)
     {
-        if (self.cellStyle == XCDroupdownTableViewStyleCustom)
+        if (self.cellStyle == XCDropdownTableViewStyleCustom)
         {
             return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         else
         {
             /// 非自定义的cell
-            cell = [[XCDroupdownDefaultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[XCDropdownDefaultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
@@ -228,7 +228,7 @@
     {
         NSString *title = self.dataArr[indexPath.row];
         
-        UILabel *contentLB = ((XCDroupdownDefaultCell *)cell).contentLB;
+        UILabel *contentLB = ((XCDropdownDefaultCell *)cell).contentLB;
         contentLB.text = title;
         contentLB.font = [UIFont systemFontOfSize:self.textFontSize];
         
@@ -286,7 +286,7 @@
     /// cell 真实显示的数量
     NSInteger cellRealCount = self.dataArr.count;
     
-    if (self.cellStyle == XCDroupdownTableViewStyleCustom)
+    if (self.cellStyle == XCDropdownTableViewStyleCustom)
     {
         cellRealCount = self.cellCount;
     }
@@ -324,7 +324,7 @@
 /**
  *  显示
  */
-- (XCDroupdownTableViewShow)show
+- (XCDropdownTableViewShow)show
 {
     /// 添加至 窗口
     [[UIApplication sharedApplication].keyWindow addSubview:self];
@@ -364,18 +364,18 @@
     /// 刷新 表格
     [self.tableView reloadData];
     
-    return ^XCDroupdownTableView *{
+    return ^XCDropdownTableView *{
         
         return weakSelf;
     };
 }
 
 /** 👀 最大显示的行数（默认为 5 行，超过 5 行后，则滚动显示） 👀 */
-- (XCDroupdownTableViewMaxShowRows)maxRows
+- (XCDropdownTableViewMaxShowRows)maxRows
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(NSInteger maxCount){
+    return ^XCDropdownTableView *(NSInteger maxCount){
         
         weakSelf.maxCount = maxCount;
         
@@ -384,11 +384,11 @@
 }
 
 /** 👀 行高：默认 50 👀 */
-- (XCDroupdownTableViewRowHeight)rowHeight
+- (XCDropdownTableViewRowHeight)rowHeight
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(CGFloat rowHeight){
+    return ^XCDropdownTableView *(CGFloat rowHeight){
         
         weakSelf.rowH = rowHeight;
         weakSelf.tableView.rowHeight = rowHeight;
@@ -398,11 +398,11 @@
 }
 
 /** 👀 样式 👀 */
-- (XCDroupdownTableView *(^)(XCDroupdownTableViewStyle style))style
+- (XCDropdownTableView *(^)(XCDropdownTableViewStyle style))style
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(XCDroupdownTableViewStyle style){
+    return ^XCDropdownTableView *(XCDropdownTableViewStyle style){
         
         weakSelf.cellStyle = style;
         
@@ -411,13 +411,13 @@
 }
 
 
-#pragma mark 以下方法只在 style == XCDroupdownTableViewStyleDefault 的样式下有效 👀 💤
+#pragma mark 以下方法只在 style == XCDropdownTableViewStyleDefault 的样式下有效 👀 💤
 /** 👀 数据源数组：如果是自定义的cell 👀 */
-- (XCDroupdownTableViewDataSource)dataSource
+- (XCDropdownTableViewDataSource)dataSource
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(NSArray<NSString *> *dataSource){
+    return ^XCDropdownTableView *(NSArray<NSString *> *dataSource){
         
         /// 设置 数据源
         weakSelf.dataArr = dataSource;
@@ -427,11 +427,11 @@
 }
 
 /** 👀 默认选中某一行 👀 */
-- (XCDroupdownTableViewDefaultSelectedIndex)defaultSelectedIndex
+- (XCDropdownTableViewDefaultSelectedIndex)defaultSelectedIndex
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(NSInteger index){
+    return ^XCDropdownTableView *(NSInteger index){
         
         weakSelf.selectedIndex = index;
         
@@ -440,11 +440,11 @@
 }
 
 /** 👀 每行文字的对齐方式：默认 NSTextAlignmentLeft 👀 */
-- (XCDroupdownTableViewTextAlignment)textAlignment
+- (XCDropdownTableViewTextAlignment)textAlignment
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(NSTextAlignment alignment){
+    return ^XCDropdownTableView *(NSTextAlignment alignment){
         
         weakSelf.alignment = alignment;
         
@@ -453,11 +453,11 @@
 }
 
 /** 👀 文字的大小：默认 15 👀 */
-- (XCDroupdownTableViewTextFontSize)fontSize
+- (XCDropdownTableViewTextFontSize)fontSize
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(CGFloat fontSize){
+    return ^XCDropdownTableView *(CGFloat fontSize){
         
         weakSelf.textFontSize = fontSize;
         
@@ -466,11 +466,11 @@
 }
 
 /** 👀 精通状态下文字的颜色：默认 blackColor 👀 */
-- (XCDroupdownTableViewNormalTextColor)normalTextColor
+- (XCDropdownTableViewNormalTextColor)normalTextColor
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(UIColor *color){
+    return ^XCDropdownTableView *(UIColor *color){
         
         weakSelf.normalColor = color;
         
@@ -479,11 +479,11 @@
 }
 
 /** 👀 选中状态下的文字的颜色：默认 orangeColor 👀 */
-- (XCDroupdownTableViewSelectedTextColor)selectedTextColor
+- (XCDropdownTableViewSelectedTextColor)selectedTextColor
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(UIColor *color){
+    return ^XCDropdownTableView *(UIColor *color){
         
         weakSelf.selectedColor = color;
         
@@ -492,11 +492,11 @@
 }
 
 /** 👀 选中某一行的回调 👀 */
-- (XCDroupdownTableView *(^)(XCDroupdownTableViewDidSelectRowHandle))didSelectRowHandle
+- (XCDropdownTableView *(^)(XCDropdownTableViewDidSelectRowHandle))didSelectRowHandle
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(XCDroupdownTableViewDidSelectRowHandle handle){
+    return ^XCDropdownTableView *(XCDropdownTableViewDidSelectRowHandle handle){
         
         weakSelf.selectedHandle = handle;
         
@@ -504,13 +504,13 @@
     };
 }
 
-#pragma mark 以下方法只在 style == XCDroupdownTableViewStyleCustom 的样式下有效  👀 💤
+#pragma mark 以下方法只在 style == XCDropdownTableViewStyleCustom 的样式下有效  👀 💤
 /** 👀 行数 👀 */
-- (XCDroupdownTableViewRows)rows
+- (XCDropdownTableViewRows)rows
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(NSInteger rows){
+    return ^XCDropdownTableView *(NSInteger rows){
         
         weakSelf.cellCount = rows;
         
@@ -519,11 +519,11 @@
 }
 
 /** 👀 自定义的cell 👀 */
-- (XCDroupdownTableView *(^)(XCDroupdownTableViewCell))cell
+- (XCDropdownTableView *(^)(XCDropdownTableViewCell))cell
 {
     WS(weakSelf);
     
-    return ^XCDroupdownTableView *(XCDroupdownTableViewCell cell){
+    return ^XCDropdownTableView *(XCDropdownTableViewCell cell){
         
         weakSelf.customCell = cell;
         
