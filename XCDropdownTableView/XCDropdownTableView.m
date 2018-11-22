@@ -157,10 +157,10 @@
      *  视图添加结构
      *
      *  keyWindow
-                self
-                    tableView
+     self
+     tableView
      
-                maskView
+     maskView
      */
     
     /*⏰ ----- 添加背景蒙板 ----- ⏰*/
@@ -172,6 +172,7 @@
     
     /*⏰ ----- 添加内容视图 ----- ⏰*/
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView = tableView;
     tableView.delegate   = self;
     tableView.dataSource = self;
     tableView.rowHeight  = self.rowH;
@@ -222,7 +223,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     }
-
+    
     /// 配置数据
     if (self.dataArr.count > indexPath.row)
     {
@@ -253,7 +254,7 @@
 {
     [self dismiss];
     
-    if (self.didSelectRowHandle)
+    if (self.selectedHandle)
     {
         self.selectedHandle(self, tableView, indexPath.row);
     }
@@ -281,7 +282,7 @@
 /**
  *  获取内容的高度
  */
-- (CGFloat)fetchContentHeight
+- (CGFloat)_fetchContentHeight
 {
     /// cell 真实显示的数量
     NSInteger cellRealCount = self.dataArr.count;
@@ -297,7 +298,7 @@
 /**
  *  隐藏
  */
-- (void)dismiss
+- (void)_dismiss
 {
     WS(weakSelf);
     
@@ -307,7 +308,7 @@
     [UIView animateWithDuration:DURATION animations:^{
         
         rectTable.size.height = 0;
-                
+        
         weakSelf.tableView.frame = rectTable;
         weakSelf.mask.alpha = 0;
         
@@ -331,14 +332,14 @@
     
     /*⏰ ----- 重置 frame ----- ⏰*/
     CGRect rect = self.frame;
-    rect.size.height = [self fetchContentHeight];
+    rect.size.height = [self _fetchContentHeight];
     self.frame = rect;
-
+    
     /*⏰ ----- 设置 tableView 的显示与隐藏 ----- ⏰*/
     CGFloat tableX = 0;
     CGFloat tableY = 0;
     CGFloat tableW = CGRectGetWidth(self.frame);
-    CGFloat tableH = [self fetchContentHeight];
+    CGFloat tableH = [self _fetchContentHeight];
     
     /// 检测当前 tableView 是否已经超过屏幕显示的范围
     if ((tableH + CGRectGetMinY(self.frame)) > SCREEN_HEIGHT) {
@@ -347,7 +348,7 @@
     
     self.tableView.frame = CGRectMake(tableX, tableY, tableW, 0);
     self.mask.alpha = 0;
-
+    
     WS(weakSelf);
     
     /// 设置阴影
@@ -358,6 +359,48 @@
     [UIView animateWithDuration:DURATION animations:^{
         
         weakSelf.mask.alpha   = 1.f;
+        weakSelf.tableView.frame = CGRectMake(tableX, tableY, tableW, tableH);
+    }];
+    
+    /// 刷新 表格
+    [self.tableView reloadData];
+    
+    return ^XCDropdownTableView *{
+        
+        return weakSelf;
+    };
+}
+
+- (XCDropdownTableViewDismiss)dismiss
+{
+    [self _dismiss];
+    
+    WS(weakSelf);
+    return ^XCDropdownTableView *{
+        return weakSelf;
+    };
+}
+
+- (XCDropdownTableViewReloadData)reloadData
+{
+    /*⏰ ----- 重置 frame ----- ⏰*/
+    CGRect rect = self.frame;
+    rect.size.height = [self _fetchContentHeight];
+    self.frame = rect;
+    
+    /*⏰ ----- 设置 tableView 的显示与隐藏 ----- ⏰*/
+    CGFloat tableX = 0;
+    CGFloat tableY = 0;
+    CGFloat tableW = CGRectGetWidth(self.frame);
+    CGFloat tableH = [self _fetchContentHeight];
+    
+    /// 检测当前 tableView 是否已经超过屏幕显示的范围
+    if ((tableH + CGRectGetMinY(self.frame)) > SCREEN_HEIGHT) {
+        tableH = SCREEN_HEIGHT - CGRectGetMinY(self.frame);
+    }
+    
+    WS(weakSelf);
+    [UIView animateWithDuration:DURATION animations:^{
         weakSelf.tableView.frame = CGRectMake(tableX, tableY, tableW, tableH);
     }];
     
@@ -410,6 +453,18 @@
     };
 }
 
+/** 👀 蒙板背景颜色 👀 */
+- (XCDropdownTableViewMaskBackgroundColor)maskBackgroundColor
+{
+    WS(weakSelf);
+    
+    return ^XCDropdownTableView *(UIColor *color){
+        
+        weakSelf.mask.backgroundColor = color;
+        
+        return weakSelf;
+    };
+}
 
 #pragma mark 以下方法只在 style == XCDropdownTableViewStyleDefault 的样式下有效 👀 💤
 /** 👀 数据源数组：如果是自定义的cell 👀 */
