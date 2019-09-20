@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "XCDropdownTableView"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "DropdownTableView"
 
   s.description  = "DropdownTableView自定义下拉列表视图"

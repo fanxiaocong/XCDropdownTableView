@@ -70,7 +70,8 @@
 @property (assign, nonatomic) XCDropdownTableViewStyle cellStyle;
 /** 👀 选中某一行的回调 👀 */
 @property (copy, nonatomic) XCDropdownTableViewDidSelectRowHandle selectedHandle;
-
+/** 👀 点击蒙板的回调 👀 */
+@property (copy, nonatomic) XCDropdownTableViewDidClickMaskHandle clickMaskHandle;
 
 
 /// style == XCDropdownTableViewStyleDefault
@@ -166,7 +167,7 @@
     /*⏰ ----- 添加背景蒙板 ----- ⏰*/
     UIButton *maskView = [[UIButton alloc] initWithFrame:[UIScreen mainScreen].bounds];
     maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.3f];
-    [maskView addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [maskView addTarget:self action:@selector(clickMaskAction) forControlEvents:UIControlEventTouchUpInside];
     self.mask = maskView;
     [[UIApplication sharedApplication].keyWindow addSubview:maskView];
     
@@ -275,6 +276,20 @@
     {
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
+}
+
+#pragma mark - 🎬 👀 Action Method 👀
+
+/**
+ *  点击蒙板的回调
+ */
+- (void)clickMaskAction
+{
+    if (self.clickMaskHandle) {
+        self.clickMaskHandle(self);
+    }
+    
+    [self dismiss];
 }
 
 #pragma mark - 🔒 👀 Privite Method 👀
@@ -554,6 +569,18 @@
     return ^XCDropdownTableView *(XCDropdownTableViewDidSelectRowHandle handle){
         
         weakSelf.selectedHandle = handle;
+        
+        return weakSelf;
+    };
+}
+
+- (XCDropdownTableView *(^)(XCDropdownTableViewDidClickMaskHandle))didClickMaskHandle
+{
+    WS(weakSelf);
+    
+    return ^XCDropdownTableView *(XCDropdownTableViewDidClickMaskHandle handle){
+        
+        weakSelf.clickMaskHandle = handle;
         
         return weakSelf;
     };

@@ -31,6 +31,7 @@ typedef XCDropdownTableView *(^XCDropdownTableViewReloadData)(void);
 typedef XCDropdownTableView *(^XCDropdownTableViewMaxShowRows)(NSInteger maxCount);
 typedef XCDropdownTableView *(^XCDropdownTableViewRowHeight)(CGFloat rowHeight);
 typedef void(^XCDropdownTableViewDidSelectRowHandle)(XCDropdownTableView *drop, UITableView *tableView, NSInteger index);
+typedef void(^XCDropdownTableViewDidClickMaskHandle)(XCDropdownTableView *drop);
 
 /*⏰ ----- XCDropdownTableViewStyleDefault ----- ⏰*/
 typedef XCDropdownTableView *(^XCDropdownTableViewDataSource)(NSArray<NSString *> *dataSource);
@@ -74,6 +75,9 @@ typedef UITableViewCell *(^XCDropdownTableViewCell)(UITableView *tableView, NSIn
 
 /** 👀 选中某一行的回调 👀 */
 - (XCDropdownTableView *(^)(XCDropdownTableViewDidSelectRowHandle))didSelectRowHandle;
+
+/** 👀 点击蒙板的回调 👀 */
+- (XCDropdownTableView *(^)(XCDropdownTableViewDidClickMaskHandle))didClickMaskHandle;
 
 /** 👀 蒙板背景颜色 👀 */
 - (XCDropdownTableViewMaskBackgroundColor)maskBackgroundColor;
